@@ -4,6 +4,10 @@ BirdBot enhances the performances of the players in BombParty.
 
 4 services:
 - the PostgreSQL Database
-- the Website (written in Next.JS, serves as a landing page + lists the records)
 - the API (allows the Bot and the Website to interact with data from the database)
 - The Bot (written in Rust for performance, interacts with the JKLM.fun platform, plays the game, manages the rooms)
+
+To run:
+
+1/ Copy the .env.example file into .env
+2/ docker-compose up

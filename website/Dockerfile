@@ -1,26 +1,9 @@
-FROM node:23.7-alpine AS builder
-
-WORKDIR /app
-
-COPY package.json package-lock.json ./ 
-
-RUN npm install --only=production
-
-COPY . .
-
-RUN npm run build
-
 FROM node:23.7-alpine
-
 WORKDIR /app
-
-COPY --from=builder /app ./
-
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-USER appuser
-
-EXPOSE 3000
-
+COPY package.json package-lock.json ./ 
+RUN npm install
+COPY . .
 ENV NODE_ENV=production
-
+EXPOSE 3000
+RUN npm run build
 CMD ["npm", "run", "start"]
