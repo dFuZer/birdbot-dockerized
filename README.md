@@ -1,4 +1,4 @@
-BirdBot, split into 3 dockerized services and orchestrated using docker-compose.
+BirdBot, split into 4 dockerized services and orchestrated using docker-compose.
 BirdBot is an autonomous bot that plays BombParty (the game) on JKLM.fun (the game platform). 
 BirdBot enhances the experience of the players in BombParty.
 
