@@ -1,0 +1,40 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Player {
+    id        String   @id @default(uuid()) @db.Uuid
+    createdAt DateTime @default(now())
+    nickname  String
+
+    authNickname String
+    authProvider String
+    authId       String
+
+    words Word[]
+}
+
+model Game {
+    id        String   @id @default(uuid()) @db.Uuid
+    createdAt DateTime @default(now())
+
+    words Word[]
+}
+
+model Word {
+    id        String   @id @default(uuid()) @db.Uuid
+    createdAt DateTime @default(now())
+    word      String
+    playerId  String
+    gameId    String   @db.Uuid
+
+    player Player @relation(fields: [playerId], references: [id])
+    game   Game   @relation(fields: [gameId], references: [id])
+
+    @@map("PlacedWord")
+}
